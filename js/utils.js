@@ -186,14 +186,14 @@ const Utils = {
         let output = `*(الـقوة الخاصـة لأمن الطرق بمنطـقة عسير)*\n`;
         output += `*(تقـرير إنتاجية حملة المهربين ليوم ${dateInfo.day} الموافق ${dateInfo.date} وهي كالآتي:-*\n\n`;
 
-        output += `♦️ **: الحالات الأمنيه**\n`;
+        output += `♦️ *: الحالات الأمنيه*\n`;
         securityItems.forEach(x => {
             if (x.count > 0) {
                 output += `•(${x.count}) ${x.key}.\n`;
             }
         });
 
-        output += `\n♦️ **: المخالفات**\n`;
+        output += `\n♦️ *: المخالفات*\n`;
         violationItems.forEach(x => {
             if (x.count > 0) {
                 output += `•(${x.count}) ${x.key}.\n`;

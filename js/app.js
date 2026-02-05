@@ -230,9 +230,6 @@ const App = {
             // build output
             this.generateAndDisplayOutput(newSecurity, newViolation, ignoredLog);
 
-            // Play success animation
-            this.playSuccessAnimation();
-
             Utils.notify('✅ تم معالجة البيانات بنجاح', 'success');
         } catch (error) {
             console.error('خطأ في معالجة البيانات:', error);
@@ -338,7 +335,6 @@ const App = {
                 document.body.removeChild(textArea);
             }
 
-            this.playSuccessAnimation();
             Utils.notify('✅ تم النسخ إلى الحافظة', 'success', 1500);
         } catch (error) {
             console.error('خطأ في النسخ:', error);

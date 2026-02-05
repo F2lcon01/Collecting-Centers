@@ -1,39 +1,412 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>تسجيل الدخول</title>
-  <link rel="stylesheet" href="css/styles.css">
-  <style>
-    body{display:flex;align-items:center;justify-content:center;height:100vh;background:#0f0c29;color:#fff;font-family:Tajawal, sans-serif}
-    .card{background:rgba(255,255,255,0.03);padding:28px;border-radius:12px;max-width:420px;width:90%;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
-    input{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:#fff;font-size:16px}
-    button{margin-top:12px;padding:12px;width:100%;border-radius:8px;background:linear-gradient(45deg,#bc13fe,#ff00ff);color:#fff;border:none;font-weight:800}
-    .hint{font-size:13px;color:#ccc;margin-top:8px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="نظام المصادقة الآمن">
+    <meta name="theme-color" content="#0f0c29">
+    <title>Security Stats - تسجيل الدخول</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a0b2e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Tajawal', sans-serif;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: moveParticles 20s linear infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes moveParticles {
+            from { transform: translateY(0); }
+            to { transform: translateY(-50%); }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(0,243,255,0.4); }
+            50% { box-shadow: 0 0 40px rgba(0,243,255,0.8); }
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 420px;
+            animation: slideIn 0.8s ease;
+            z-index: 10;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .login-card:hover {
+            border-color: rgba(0, 243, 255, 0.3);
+            box-shadow: 0 15px 50px rgba(0, 243, 255, 0.1);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+            animation: pulse 2s ease infinite;
+        }
+
+        .login-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #00f3ff, #ff00ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .login-subtitle {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        #pwd {
+            width: 100%;
+            padding: 14px 16px;
+            padding-right: 44px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        #pwd:focus {
+            outline: none;
+            border-color: #00f3ff;
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+        }
+
+        #pwd::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 14px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .toggle-password:hover {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        #btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(45deg, #bc13fe, #ff00ff);
+            color: #fff;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 900;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.4);
+            letter-spacing: 1px;
+        }
+
+        #btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(188, 19, 254, 0.8);
+        }
+
+        #btn:active {
+            transform: translateY(0);
+        }
+
+        #btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        #loginMsg {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-align: center;
+            min-height: 20px;
+            animation: slideIn 0.3s ease;
+        }
+
+        #loginMsg.success {
+            background: rgba(56, 239, 125, 0.2);
+            color: #38ef7d;
+            border: 1px solid rgba(56, 239, 125, 0.3);
+        }
+
+        #loginMsg.error {
+            background: rgba(255, 71, 87, 0.2);
+            color: #ff6b81;
+            border: 1px solid rgba(255, 71, 87, 0.3);
+        }
+
+        #loginMsg.info {
+            background: rgba(0, 243, 255, 0.2);
+            color: #00f3ff;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+        }
+
+        .login-footer {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(56, 239, 125, 0.1);
+            padding: 6px 12px;
+            border-radius: 20px;
+            margin-top: 8px;
+        }
+
+        .security-badge svg {
+            width: 16px;
+            height: 16px;
+            fill: #38ef7d;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            .login-container {
+                max-width: 100%;
+            }
+
+            .login-card {
+                padding: 30px 20px;
+                border-radius: 16px;
+            }
+
+            .login-icon {
+                font-size: 2.5rem;
+            }
+
+            .login-title {
+                font-size: 1.5rem;
+            }
+
+            .login-subtitle {
+                font-size: 0.85rem;
+            }
+
+            #pwd {
+                font-size: 16px; /* Prevent zoom on iOS */
+                padding: 12px 14px;
+                padding-right: 40px;
+            }
+
+            #btn {
+                padding: 12px;
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .login-card {
+                padding: 25px 15px;
+            }
+
+            .login-title {
+                font-size: 1.3rem;
+            }
+
+            .login-footer {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="card">
-    <h2 style="margin:0 0 8px 0">مطلوب كلمة المرور</h2>
-    <div style="margin-bottom:12px;color:#ddd">أدخل كلمة المرور للوصول إلى النظام</div>
-    <input id="pwd" type="password" placeholder="كلمة المرور">
-    <div id="loginMsg" class="hint"></div>
-    <button id="btn">دخول</button>
-    <div class="hint" style="margin-top:10px">ملاحظة: النظام يستخدم تحققًا متقدماً (PBKDF2-SHA512).</div>
-  </div>
+    <div class="particles"></div>
 
-  <script src="js/auth.js"></script>
-  <script>
-    document.getElementById('pwd').addEventListener('keypress', (e)=>{ if(e.key==='Enter') document.getElementById('btn').click(); });
-    document.getElementById('btn').addEventListener('click', async ()=>{
-      const v = document.getElementById('pwd').value || '';
-      document.getElementById('loginMsg').innerText = 'جاري التحقق...';
-      await Auth.login(v);
-    });
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <span class="login-icon">🔒</span>
+                <h1 class="login-title">Security Stats</h1>
+                <p class="login-subtitle">نظام معالجة البيانات الأمنية</p>
+            </div>
 
-    // If already authenticated, redirect to index
-    (async ()=>{ if(Auth.isAuthenticated()) window.location.replace('index.html'); })();
-  </script>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label">كلمة المرور</label>
+                    <div class="input-wrapper">
+                        <input 
+                            id="pwd" 
+                            type="password" 
+                            placeholder="أدخل كلمة المرور الآمنة"
+                            autocomplete="current-password"
+                            required
+                        >
+                        <button type="button" class="toggle-password" onclick="togglePassword()">
+                            👁️
+                        </button>
+                    </div>
+                </div>
+
+                <div id="loginMsg"></div>
+
+                <button id="btn" type="submit" disabled>جاري التحميل...</button>
+            </form>
+
+            <div class="login-footer">
+                <div class="security-badge">
+                    ✓ تحقق آمن PBKDF2-SHA512
+                </div>
+                <p style="margin-top: 12px; font-size: 0.8rem; opacity: 0.7;">
+                    النظام يستخدم تشفير متقدم لحماية البيانات
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        let passwordVisible = false;
+
+        function togglePassword() {
+            const pwd = document.getElementById('pwd');
+            passwordVisible = !passwordVisible;
+            pwd.type = passwordVisible ? 'text' : 'password';
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const pwd = document.getElementById('pwd').value || '';
+            const btn = document.getElementById('btn');
+            const msg = document.getElementById('loginMsg');
+
+            btn.disabled = true;
+            btn.innerText = 'جاري التحقق...';
+            msg.className = 'info';
+            msg.innerText = 'يتم التحقق من كلمة المرور...';
+
+            try {
+                const success = await Auth.login(pwd);
+                if (success) {
+                    msg.className = 'success';
+                    msg.innerText = '✓ تم التحقق بنجاح! جاري الانتقال...';
+                    setTimeout(() => window.location.replace('index.html'), 1500);
+                } else {
+                    msg.className = 'error';
+                    msg.innerText = '✗ كلمة المرور غير صحيحة';
+                    btn.disabled = false;
+                    btn.innerText = 'دخول';
+                }
+            } catch (error) {
+                msg.className = 'error';
+                msg.innerText = '✗ حدث خطأ في التحقق';
+                btn.disabled = false;
+                btn.innerText = 'دخول';
+            }
+        }
+
+        // Enter key support
+        document.getElementById('pwd').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !document.getElementById('btn').disabled) {
+                document.getElementById('btn').click();
+            }
+        });
+
+        // Enable button once script is loaded
+        window.addEventListener('load', () => {
+            document.getElementById('btn').disabled = false;
+            document.getElementById('btn').innerText = 'دخول';
+        });
+
+        // If already authenticated, redirect
+        if (Auth.isAuthenticated()) {
+            window.location.replace('index.html');
+        }
+    </script>
 </body>
 </html>

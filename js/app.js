@@ -280,7 +280,18 @@ const App = {
         this.updateStats();
 
         // Update ignored list
-        const ul = document.getElementById('ignoredList'); if (ul) { ul.innerHTML = ''; ignoredLog.forEach(txt => { const li = document.createElement('li'); li.innerText = txt.slice(0, 80); ul.appendChild(li); }); }
+        const ignoredBox = document.getElementById('ignoredItemsBox');
+        const ignoredList = document.getElementById('ignoredItemsList');
+        if (ignoredList && ignoredBox) {
+            ignoredList.innerHTML = '';
+            ignoredLog.forEach(txt => {
+                const item = document.createElement('div');
+                item.style.cssText = 'padding: 3px 0; border-bottom: 1px solid rgba(255, 193, 7, 0.2); word-break: break-word;';
+                item.textContent = txt;
+                ignoredList.appendChild(item);
+            });
+            ignoredBox.style.display = ignoredLog.length > 0 ? 'block' : 'none';
+        }
     },
 
     /**

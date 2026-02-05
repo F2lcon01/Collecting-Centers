@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>تسجيل الدخول</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    body{display:flex;align-items:center;justify-content:center;height:100vh;background:#0f0c29;color:#fff;font-family:Tajawal, sans-serif}
+    .card{background:rgba(255,255,255,0.03);padding:28px;border-radius:12px;max-width:420px;width:90%;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+    input{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:#fff;font-size:16px}
+    button{margin-top:12px;padding:12px;width:100%;border-radius:8px;background:linear-gradient(45deg,#bc13fe,#ff00ff);color:#fff;border:none;font-weight:800}
+    .hint{font-size:13px;color:#ccc;margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2 style="margin:0 0 8px 0">مطلوب كلمة المرور</h2>
+    <div style="margin-bottom:12px;color:#ddd">أدخل كلمة المرور للوصول إلى النظام</div>
+    <input id="pwd" type="password" placeholder="كلمة المرور">
+    <div id="loginMsg" class="hint"></div>
+    <button id="btn">دخول</button>
+    <div class="hint" style="margin-top:10px">ملاحظة: النظام يستخدم تحققًا متقدماً (PBKDF2-SHA512).</div>
+  </div>
+
+  <script src="js/auth.js"></script>
+  <script>
+    document.getElementById('pwd').addEventListener('keypress', (e)=>{ if(e.key==='Enter') document.getElementById('btn').click(); });
+    document.getElementById('btn').addEventListener('click', async ()=>{
+      const v = document.getElementById('pwd').value || '';
+      document.getElementById('loginMsg').innerText = 'جاري التحقق...';
+      await Auth.login(v);
+    });
+
+    // If already authenticated, redirect to index
+    (async ()=>{ if(Auth.isAuthenticated()) window.location.replace('index.html'); })();
+  </script>
+</body>
+</html>

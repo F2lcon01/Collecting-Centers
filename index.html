@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="نظام معالجة البيانات الأمنية عالي الأداء">
+    <meta name="theme-color" content="#0f0c29">
+    <title>Security Stats X-TREME</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900" rel="stylesheet"></noscript>
+    <!-- External CSS Files -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<script>
+// Redirect to login if no valid session (client-side protection)
+(function(){
+    try{
+        const auth = sessionStorage.getItem('authenticated');
+        const exp = parseInt(sessionStorage.getItem('auth_expires')||'0');
+        if(auth !== '1' || Date.now() >= exp){
+            window.location.replace('login.html');
+        }
+    }catch(e){
+        window.location.replace('login.html');
+    }
+})();
+</script>
+
+<div class="particles"></div>
+
+<div class="header">
+    <div class="title-glitch">⚡ SYSTEM V.10 ⚡</div>
+    <p style="color: rgba(255,255,255,0.6);">High-Performance Security Analytics</p>
+    
+    <div class="stats-container">
+        <div class="stat-card">
+            <span class="stat-num" id="totalSecurity">0</span>
+            <span class="stat-lbl">حالات أمنية</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-num" id="totalViolations">0</span>
+            <span class="stat-lbl">مخالفات مرورية</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-num" id="totalAll">0</span>
+            <span class="stat-lbl">المجموع الكلي</span>
+        </div>
+    </div>
+</div>
+
+<div class="grid-layout">
+    
+    <div class="glass-panel">
+        <div class="panel-header">
+            <span class="panel-title">📥 وحدة إدخال البيانات</span>
+            <button onclick="App.clearInputs()" style="color: #ff4757; font-weight: bold; font-size: 0.9rem;" title="مسح جميع البيانات">مسح الكل 🗑️</button>
+        </div>
+        
+        <div id="centersList"></div>
+        
+        <button class="btn-add" onclick="App.addCenter()" title="إضافة مركز جديد">+ إضافة مركز جديد</button>
+        <input type="text" id="centerInput" class="center-input" placeholder="أدخل اسم المركز ثم Enter...">
+        <button class="btn-neon btn-process" onclick="App.processAll()" title="معالجة البيانات">⚡ تشغيل المعالجة ⚡</button>
+    </div>
+
+    <div class="glass-panel">
+        <div class="panel-header">
+            <span class="panel-title" style="color: var(--neon-pink);">✅ التقرير النهائي</span>
+        </div>
+        <textarea id="outputText" readonly placeholder="النتائج ستظهر هنا مشعة..." title="التقرير المعالج"></textarea>
+        <button class="btn-neon btn-copy" onclick="App.copyToClipboard()" title="نسخ النتائج">📋 نسخ التقرير</button>
+        
+        <div class="trash-bin">
+            <div class="trash-title">👁️ الفلتر الذكي (تم استبعاد):</div>
+            <ul id="ignoredList"></ul>
+        </div>
+    </div>
+
+</div>
+
+<!-- External JavaScript Files - Load in order: data → utils → app -->
+<script src="js/data-loader.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

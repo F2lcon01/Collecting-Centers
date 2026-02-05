@@ -189,75 +189,213 @@
 
 @media (max-width: 479px) {
     body {
-        padding: 8px;
+        padding: 6px;
     }
 
     .header {
-        margin-bottom: 15px;
+        margin-bottom: 12px;
     }
 
     .title-glitch {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 
     .header p {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 
     .stats-container {
-        gap: 8px;
-        margin-bottom: 15px;
+        gap: 6px;
+        margin-bottom: 12px;
+        flex-wrap: wrap;
     }
 
     .stat-card {
-        padding: 10px 15px;
+        flex: 1;
+        min-width: 90px;
+        padding: 10px 12px;
     }
 
     .stat-num {
-        font-size: 1.5rem;
+        font-size: 1.3rem;
     }
 
     .stat-lbl {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
+    }
+
+    .grid-layout {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0;
     }
 
     .glass-panel {
-        padding: 10px;
+        padding: 12px;
         border-radius: 12px;
+        max-height: 50vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .panel-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 8px;
+        margin-bottom: 8px;
     }
 
     .panel-title {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        flex: 1;
+    }
+
+    #centersList {
+        flex: 1;
+        overflow-y: auto;
+        max-height: 35vh;
+        margin-bottom: 6px;
+    }
+
+    .center-item {
+        margin-bottom: 8px;
+        padding: 8px;
     }
 
     .input-group {
-        padding: 10px;
-        margin-bottom: 8px;
+        padding: 8px;
+        margin-bottom: 6px;
+        border-radius: 8px;
     }
 
     textarea {
         font-size: 12px;
-        min-height: 60px;
+        min-height: 70px;
+        padding: 8px;
+        line-height: 1.4;
+    }
+
+    .center-input {
+        font-size: 12px !important;
+        padding: 10px !important;
+        width: 100% !important;
+        margin-bottom: 6px !important;
     }
 
     .btn-neon {
         padding: 10px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         border-radius: 8px;
+        margin-top: 6px;
+    }
+
+    .btn-add {
+        padding: 8px;
+        margin-top: 6px;
+        font-size: 0.85rem;
+    }
+
+    .btn-copy {
+        padding: 10px;
+        font-size: 0.85rem;
+        margin-top: 8px;
     }
 
     #outputText {
         height: 200px;
         font-size: 11px;
         padding: 10px;
+        line-height: 1.3;
+    }
+
+    .trash-bin {
+        margin-top: 8px;
+        padding-top: 8px;
+        max-height: 100px;
+        overflow-y: auto;
     }
 
     .trash-title {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
     }
 
     #ignoredList {
+        font-size: 0.65rem;
+        max-height: 80px;
+    }
+
+    #ignoredList li {
+        padding: 2px 0;
+    }
+
+    .btn-icon {
+        font-size: 0.9rem;
+        padding: 4px 8px;
+    }
+
+    .section-label {
         font-size: 0.7rem;
+    }
+}
+
+/* ============================================
+   EXTRA SMALL MOBILE (up to 360px)
+   ============================================ */
+
+@media (max-width: 360px) {
+    body {
+        padding: 4px;
+    }
+
+    .title-glitch {
+        font-size: 1.1rem;
+    }
+
+    .stat-card {
+        min-width: 70px;
+        padding: 8px 10px;
+    }
+
+    .stat-num {
+        font-size: 1.1rem;
+    }
+
+    .stat-lbl {
+        font-size: 0.55rem;
+    }
+
+    .glass-panel {
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .panel-title {
+        font-size: 0.8rem;
+    }
+
+    #centersList {
+        max-height: 30vh;
+    }
+
+    textarea {
+        font-size: 11px;
+        min-height: 60px;
+    }
+
+    #outputText {
+        height: 180px;
+        font-size: 10px;
+    }
+
+    .btn-neon {
+        padding: 8px;
+        font-size: 0.8rem;
     }
 }
 

@@ -157,6 +157,7 @@ textarea {
     resize: vertical;
     outline: none;
     word-break: break-word;
+    box-sizing: border-box;
 }
 
 textarea::placeholder {

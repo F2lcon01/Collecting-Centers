@@ -188,14 +188,14 @@
                 <button id="copyReportBtn" class="btn-copy" onclick="App.copyToClipboard()" title="نسخ النتائج" style="flex: 0 0 auto; padding: 8px 12px !important; font-size: 13px; font-weight: bold; letter-spacing: 0.5px; box-shadow: 0 0 15px rgba(56, 239, 125, 0.3);">📋 نسخ</button>
             </div>
             
-            <textarea id="outputText" readonly placeholder="النتائج..." style="flex: 1; overflow-y: auto; min-height: 140px; font-size: 12px; padding: 12px; border-radius: 8px; border: 1px solid rgba(56, 239, 125, 0.2); background: rgba(17, 153, 142, 0.05); color: white; line-height: 1.6; word-wrap: break-word;"></textarea>
+            <textarea id="outputText" readonly placeholder="النتائج..." style="flex: 1; overflow-y: auto; min-height: 220px; max-height: 60vh; font-size: 14px; padding: 14px; border-radius: 8px; border: 1px solid rgba(56, 239, 125, 0.2); background: rgba(17, 153, 142, 0.05); color: white; line-height: 1.6; word-wrap: break-word; font-family: 'Tajawal', sans-serif; white-space: pre-wrap;"></textarea>
             
             <div id="ignoredItemsBox" style="margin-top: 12px; padding: 12px; background: linear-gradient(135deg, rgba(255, 193, 7, 0.2), rgba(255, 193, 7, 0.1)); border-radius: 8px; border-right: 4px solid var(--neon-yellow); display: block; font-size: 10px; box-shadow: 0 2px 8px rgba(255, 193, 7, 0.15); border-left: 1px solid rgba(255, 193, 7, 0.3);">
                 <strong style="color: var(--neon-yellow); font-size: 12px; display: flex; align-items: center; gap: 6px; margin-bottom: 8px; text-shadow: 0 0 8px rgba(255, 193, 7, 0.3);">
                     <span style="font-size: 14px;">🚫</span>
                     <span>العناصر المستبعدة (الفلتر الذكي)</span>
                 </strong>
-                <div id="ignoredItemsList" style="color: rgba(255, 255, 255, 0.85); margin-top: 6px; font-size: 9px; max-height: 140px; overflow-y: auto; line-height: 1.6; max-width: 100%;"></div>
+                <div id="ignoredItemsList" style="color: rgba(255, 255, 255, 0.95); margin-top: 6px; font-size: 13px; max-height: 45vh; overflow-y: auto; line-height: 1.6; max-width: 100%; font-family: 'Tajawal', sans-serif;"></div>
             </div>
             </div>
         </div>

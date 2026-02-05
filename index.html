@@ -2,16 +2,103 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="نظام معالجة البيانات الأمنية عالي الأداء">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="description" content="نظام معالجة البيانات الأمنية">
     <meta name="theme-color" content="#0f0c29">
-    <title>Security Stats X-TREME</title>
+    <title>وحدة جمع البيانات</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900" rel="stylesheet"></noscript>
     <!-- External CSS Files -->
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /* Mobile-optimized inline styles */
+        .main-container { padding: 10px; max-height: calc(100vh - 160px); overflow-y: auto; }
+        .grid-layout { display: flex; flex-direction: column; gap: 10px; }
+        .glass-panel { display: flex; flex-direction: column; min-height: 250px; max-height: 50vh; overflow-y: auto; }
+
+        /* Desktop */
+        @media (min-width: 1200px) {
+            .grid-layout { grid-template-columns: 1fr 1fr; display: grid; gap: 20px; }
+            .glass-panel { min-height: 400px; max-height: 60vh; }
+            .main-container { padding: 20px; max-height: calc(100vh - 200px); }
+        }
+
+        /* Tablet */
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .main-container { padding: 15px; max-height: calc(100vh - 180px); }
+            .glass-panel { min-height: 300px; max-height: 55vh; }
+            .grid-layout { gap: 15px; }
+        }
+
+        /* Mobile */
+        @media (max-width: 767px) {
+            body { font-size: 14px; }
+            .header { padding: 10px 12px; margin-bottom: 6px; }
+            .header h1 { font-size: 15px; margin: 0 0 6px 0; }
+            .stats-container { gap: 6px; margin-bottom: 0; }
+            .stat-card { padding: 5px 6px; font-size: 9px; flex-basis: 30%; }
+            .main-container { padding: 8px; max-height: calc(100vh - 140px); }
+            .grid-layout { gap: 8px; }
+            .glass-panel { padding: 10px; min-height: 220px; max-height: 48vh; border-radius: 10px; }
+            .glass-panel h2 { font-size: 13px; margin: 0 0 6px 0; }
+            .center-item { padding: 6px; gap: 4px; }
+            .center-text { font-size: 11px; padding: 6px; min-height: 70px; }
+            #centersList { max-height: 28vh; gap: 4px; }
+            #outputText { min-height: 120px; max-height: 200px; font-size: 11px; padding: 8px; }
+            .btn-process, .btn-add, .btn-copy, .btn-clear { font-size: 11px; padding: 6px 10px; min-height: 32px; }
+            .center-input { font-size: 14px !important; padding: 8px !important; min-height: 38px; }
+            #ignoredItemsBox { font-size: 10px !important; }
+        }
+
+        /* Small mobile */
+        @media (max-width: 479px) {
+            .header { padding: 8px 10px; margin-bottom: 4px; }
+            .header h1 { font-size: 13px; margin: 0 0 4px 0; }
+            .stats-container { gap: 4px; }
+            .stat-card { padding: 4px 5px; font-size: 8px; }
+            .main-container { padding: 6px; max-height: calc(100vh - 130px); }
+            .glass-panel { padding: 8px; min-height: 200px; max-height: 46vh; border-radius: 8px; }
+            .glass-panel h2 { font-size: 12px; margin: 0 0 5px 0; }
+            .glass-panel > div:first-child { gap: 4px !important; }
+            .center-item { padding: 5px; gap: 3px; }
+            .center-text { font-size: 10px; padding: 5px; min-height: 60px; }
+            #centersList { max-height: 25vh; gap: 3px; }
+            #outputText { min-height: 110px; max-height: 180px; font-size: 10px; padding: 6px; }
+            .btn-process, .btn-add, .btn-copy, .btn-clear { font-size: 10px; padding: 5px 8px; min-height: 30px; }
+            .center-input { font-size: 14px !important; padding: 7px !important; min-height: 36px; }
+            #ignoredItemsBox { font-size: 9px !important; padding: 5px !important; }
+        }
+
+        /* Extra small - 360px */
+        @media (max-width: 360px) {
+            .header { padding: 6px 8px; margin-bottom: 3px; }
+            .header h1 { font-size: 12px; margin: 0 0 3px 0; }
+            .stats-container { gap: 3px; }
+            .stat-card { padding: 3px 4px; font-size: 7px; min-width: 40px; }
+            .main-container { padding: 5px; max-height: calc(100vh - 120px); }
+            .glass-panel { padding: 6px; min-height: 180px; max-height: 45vh; border-radius: 6px; }
+            .glass-panel h2 { font-size: 11px; margin: 0 0 4px 0; }
+            .center-item { padding: 4px; gap: 2px; }
+            .center-text { font-size: 9px; padding: 4px; min-height: 50px; }
+            #centersList { max-height: 23vh; gap: 2px; }
+            #outputText { min-height: 100px; max-height: 170px; font-size: 9px; padding: 5px; }
+            .btn-process, .btn-add, .btn-copy, .btn-clear { font-size: 9px; padding: 4px 6px; min-height: 28px; }
+            .center-input { font-size: 14px !important; padding: 6px !important; min-height: 34px; }
+        }
+
+        /* Landscape */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .header { padding: 6px 8px; margin-bottom: 2px; }
+            .header h1 { font-size: 12px; }
+            .stats-container { gap: 4px; }
+            .main-container { padding: 4px; max-height: calc(100vh - 70px); }
+            .glass-panel { max-height: 35vh; min-height: auto; }
+            #centersList { max-height: 18vh; }
+            #outputText { max-height: 130px; }
+        }
+    </style>
 </head>
 <body>
 
@@ -32,55 +119,58 @@
 
 <div class="particles"></div>
 
-<div class="header">
-    <div class="title-glitch">⚡ SYSTEM V.10 ⚡</div>
-    <p style="color: rgba(255,255,255,0.6);">High-Performance Security Analytics</p>
-    
+<header class="header">
+    <h1 style="margin: 0 0 8px 0; font-size: 18px;">🔐 وحدة الجمع</h1>
     <div class="stats-container">
         <div class="stat-card">
-            <span class="stat-num" id="totalSecurity">0</span>
-            <span class="stat-lbl">حالات أمنية</span>
+            <span class="stat-label" style="display: block; font-size: 11px;">الأمن</span>
+            <span class="stat-value" id="totalSecurity" style="display: block; font-size: 18px;">0</span>
         </div>
         <div class="stat-card">
-            <span class="stat-num" id="totalViolations">0</span>
-            <span class="stat-lbl">مخالفات مرورية</span>
+            <span class="stat-label" style="display: block; font-size: 11px;">المخالفات</span>
+            <span class="stat-value" id="totalViolations" style="display: block; font-size: 18px;">0</span>
         </div>
         <div class="stat-card">
-            <span class="stat-num" id="totalAll">0</span>
-            <span class="stat-lbl">المجموع الكلي</span>
+            <span class="stat-label" style="display: block; font-size: 11px;">الإجمالي</span>
+            <span class="stat-value" id="totalAll" style="display: block; font-size: 18px;">0</span>
         </div>
     </div>
-</div>
+</header>
 
-<div class="grid-layout">
-    
-    <div class="glass-panel">
-        <div class="panel-header">
-            <span class="panel-title">📥 وحدة إدخال البيانات</span>
-            <button onclick="App.clearInputs()" style="color: #ff4757; font-weight: bold; font-size: 0.9rem;" title="مسح جميع البيانات">مسح الكل 🗑️</button>
+<main class="main-container">
+    <div class="grid-layout">
+        
+        <div class="glass-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 4px;">
+                <h2 style="flex: 1; margin: 0; font-size: 15px;">📥 إدخال</h2>
+                <button id="clearAllBtn" class="btn-clear" onclick="App.clearInputs()" title="مسح الكل" style="flex: 0 0 auto; width: 32px; padding: 6px !important; font-size: 14px;">🗑️</button>
+            </div>
+            
+            <div style="display: flex; gap: 6px; margin-bottom: 8px;">
+                <input type="text" id="centerInput" class="center-input" placeholder="المركز..." style="flex: 1;">
+                <button id="addCenterBtn" class="btn-add" onclick="App.addCenter()" style="flex: 0 0 auto; width: 38px; padding: 6px !important; font-size: 14px;">➕</button>
+            </div>
+            
+            <div id="centersList" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 4px;"></div>
+            
+            <button id="processBtn" class="btn-process" onclick="App.processAll()" style="margin-top: 8px; width: 100%; padding: 10px !important; font-size: 14px;">⚙️ معالجة</button>
         </div>
-        
-        <div id="centersList"></div>
-        
-        <button class="btn-add" onclick="App.addCenter()" title="إضافة مركز جديد">+ إضافة مركز جديد</button>
-        <input type="text" id="centerInput" class="center-input" placeholder="أدخل اسم المركز ثم Enter...">
-        <button class="btn-neon btn-process" onclick="App.processAll()" title="معالجة البيانات">⚡ تشغيل المعالجة ⚡</button>
+
+        <div class="glass-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 4px;">
+                <h2 style="flex: 1; margin: 0; font-size: 15px;">📋 النتائج</h2>
+                <button id="copyReportBtn" class="btn-copy" onclick="App.copyToClipboard()" title="نسخ" style="flex: 0 0 auto; width: 32px; padding: 6px !important; font-size: 14px;">📋</button>
+            </div>
+            
+            <textarea id="outputText" readonly placeholder="النتائج..." style="flex: 1; overflow-y: auto; min-height: 120px; font-size: 12px; padding: 8px; border-radius: 8px;"></textarea>
+            
+            <div id="ignoredItemsBox" style="margin-top: 6px; padding: 6px; background: rgba(255, 193, 7, 0.1); border-radius: 6px; border-right: 2px solid var(--neon-yellow); display: none; font-size: 10px;">
+                <strong style="color: var(--neon-yellow); font-size: 11px;">✏️ مُتجاهل:</strong>
+                <div id="ignoredItemsList" style="color: rgba(255, 255, 255, 0.7); margin-top: 3px; font-size: 9px; max-height: 80px; overflow-y: auto;"></div>
+            </div>
+        </div>
     </div>
-
-    <div class="glass-panel">
-        <div class="panel-header">
-            <span class="panel-title" style="color: var(--neon-pink);">✅ التقرير النهائي</span>
-        </div>
-        <textarea id="outputText" readonly placeholder="النتائج ستظهر هنا مشعة..." title="التقرير المعالج"></textarea>
-        <button class="btn-neon btn-copy" onclick="App.copyToClipboard()" title="نسخ النتائج">📋 نسخ التقرير</button>
-        
-        <div class="trash-bin">
-            <div class="trash-title">👁️ الفلتر الذكي (تم استبعاد):</div>
-            <ul id="ignoredList"></ul>
-        </div>
-    </div>
-
-</div>
+</main>
 
 <!-- External JavaScript Files - Load in order: data → utils → app -->
 <script src="js/data-loader.js"></script>

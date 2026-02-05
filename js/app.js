@@ -295,13 +295,11 @@ const App = {
 
         const totalSecurity = security.reduce((sum, item) => sum + item.count, 0);
         const totalViolations = violations.reduce((sum, item) => sum + item.count, 0);
-        const totalAllCount = totalSecurity + totalViolations;
 
         // Animate values
         Utils.scheduleTask(() => {
             Utils.animateValue('totalSecurity', parseInt(document.getElementById('totalSecurity')?.innerText || 0), totalSecurity);
             Utils.animateValue('totalViolations', parseInt(document.getElementById('totalViolations')?.innerText || 0), totalViolations);
-            Utils.animateValue('totalAll', parseInt(document.getElementById('totalAll')?.innerText || 0), totalAllCount);
         });
     },
 

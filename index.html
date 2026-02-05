@@ -49,7 +49,8 @@
             #outputText { min-height: 120px; max-height: 200px; font-size: 11px; padding: 8px; }
             .btn-process, .btn-add, .btn-copy, .btn-clear { font-size: 11px; padding: 6px 10px; min-height: 32px; }
             .center-input { font-size: 14px !important; padding: 8px !important; min-height: 38px; }
-            #ignoredItemsBox { font-size: 10px !important; }
+            #ignoredItemsBox { font-size: 10px !important; padding: 8px !important; margin-top: 8px !important; max-height: 120px !important; }
+            #ignoredItemsList { font-size: 9px !important; max-height: 100px !important; }
         }
 
         /* Small mobile */
@@ -68,7 +69,8 @@
             #outputText { min-height: 110px; max-height: 180px; font-size: 10px; padding: 6px; }
             .btn-process, .btn-add, .btn-copy, .btn-clear { font-size: 10px; padding: 5px 8px; min-height: 30px; }
             .center-input { font-size: 14px !important; padding: 7px !important; min-height: 36px; }
-            #ignoredItemsBox { font-size: 9px !important; padding: 5px !important; }
+            #ignoredItemsBox { font-size: 9px !important; padding: 6px !important; margin-top: 6px !important; max-height: 100px !important; }
+            #ignoredItemsList { font-size: 8px !important; max-height: 80px !important; }
         }
 
         /* Extra small - 360px */
@@ -86,6 +88,8 @@
             #outputText { min-height: 100px; max-height: 170px; font-size: 9px; padding: 5px; }
             .btn-process, .btn-add, .btn-copy, .btn-clear { font-size: 9px; padding: 4px 6px; min-height: 28px; }
             .center-input { font-size: 14px !important; padding: 6px !important; min-height: 34px; }
+            #ignoredItemsBox { font-size: 8px !important; padding: 5px !important; margin-top: 5px !important; max-height: 80px !important; }
+            #ignoredItemsList { font-size: 7px !important; max-height: 70px !important; }
         }
 
         /* Landscape */
@@ -161,7 +165,7 @@
             <textarea id="outputText" readonly placeholder="النتائج..." style="flex: 1; overflow-y: auto; min-height: 120px; font-size: 12px; padding: 8px; border-radius: 8px;"></textarea>
             
             <div id="ignoredItemsBox" style="margin-top: 6px; padding: 6px; background: rgba(255, 193, 7, 0.1); border-radius: 6px; border-right: 2px solid var(--neon-yellow); display: none; font-size: 10px;">
-                <strong style="color: var(--neon-yellow); font-size: 11px;">✏️ مُتجاهل:</strong>
+                <strong style="color: var(--neon-yellow); font-size: 11px;">👁️ الفلتر الذكي (تم استبعاد):</strong>
                 <div id="ignoredItemsList" style="color: rgba(255, 255, 255, 0.7); margin-top: 3px; font-size: 9px; max-height: 80px; overflow-y: auto;"></div>
             </div>
         </div>

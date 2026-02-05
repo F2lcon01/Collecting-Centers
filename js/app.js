@@ -284,13 +284,17 @@ const App = {
         const ignoredList = document.getElementById('ignoredItemsList');
         if (ignoredList && ignoredBox) {
             ignoredList.innerHTML = '';
-            ignoredLog.forEach(txt => {
-                const item = document.createElement('div');
-                item.style.cssText = 'padding: 3px 0; border-bottom: 1px solid rgba(255, 193, 7, 0.2); word-break: break-word;';
-                item.textContent = txt;
-                ignoredList.appendChild(item);
-            });
-            ignoredBox.style.display = ignoredLog.length > 0 ? 'block' : 'none';
+            if (ignoredLog.length > 0) {
+                ignoredLog.forEach((txt, idx) => {
+                    const item = document.createElement('div');
+                    item.style.cssText = 'padding: 6px; margin: 3px 0; background: rgba(255, 193, 7, 0.08); border-left: 2px solid rgba(255, 193, 7, 0.4); border-radius: 4px; word-break: break-word; font-family: monospace; font-size: 8.5px; color: rgba(255, 255, 255, 0.9);';
+                    item.innerHTML = `<strong style="color: var(--neon-yellow);">${idx + 1}.</strong> ${txt}`;
+                    ignoredList.appendChild(item);
+                });
+                ignoredBox.style.display = 'block';
+            } else {
+                ignoredBox.style.display = 'none';
+            }
         }
     },
 
